@@ -1,0 +1,170 @@
+/*  
+
+TASK BACKGROUND COLOR DEPENDS ON THE PRIORITY!!
+
+*/
+/* 
+Colors: 
+#193718
+#ff8bff
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  /* 1 rem = 10px */
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  line-height: 1;
+  font-weight: 400;
+}
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  gap: 10rem;
+}
+.section-main {
+  padding: 4.8rem 0 9.6rem 0;
+  color: #ff8bff;
+}
+.card {
+  background-color: #193718;
+  padding: 3.2rem 3.2rem;
+  border-radius: 5px;
+  box-shadow: 0 0 8px #777;
+}
+.card-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: relative;
+}
+.title {
+  font-size: 2.4rem;
+  margin-bottom: 0.6rem;
+  background-color: #193718;
+  background-image: linear-gradient(
+    90deg,
+    #e67efe 10%,
+    #f08383 20%,
+    #777 30%,
+    #dfffe2 40%,
+    #3fc0ef9e 50%,
+    #ff8bff 60%,
+    #f2fc5e 70%,
+    #4cf3bb 80%,
+    #cef8afca 90%,
+    #a38282 100%
+  );
+
+  background-size: 100%;
+  background-repeat: repeat;
+
+  /* Use the text as a mask for the background. */
+  /* This will show the gradient as a text color rather than element bg. */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: title-animation 9999s ease-out;
+}
+
+@keyframes title-animation {
+  10% {
+    background-size: 100%;
+  }
+  20% {
+    background-size: 90%;
+  }
+  30% {
+    background-size: 80%;
+  }
+  40% {
+    background-size: 70%;
+  }
+  50% {
+    background-size: 60%;
+  }
+  60% {
+    background-size: 50%;
+  }
+  70% {
+    background-size: 40%;
+  }
+  80% {
+    background-size: 30%;
+  }
+  90% {
+    background-size: 20%;
+  }
+  100% {
+    background-size: 10%;
+  }
+}
+.dot-animated:after {
+  content: ".";
+  animation: dots 2.5s steps(5, end) infinite;
+}
+@keyframes dots {
+  0%,
+  10% {
+    color: rgba(0, 0, 0, 0);
+    text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0), 0.5em 0 0 rgba(0, 0, 0, 0);
+  }
+  20% {
+    color: white;
+    text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0), 0.5em 0 0 rgba(0, 0, 0, 0);
+  }
+  70% {
+    text-shadow: 0.25em 0 0 white, 0.5em 0 0 rgba(0, 0, 0, 0);
+  }
+  80%,
+  100% {
+    text-shadow: 0.25em 0 0 white, 0.5em 0 0 white;
+  }
+}
+
+.search-box input {
+  background-color: #4cf3bb;
+  border: none;
+  border-radius: 4px;
+  height: 3.2rem;
+  text-align: center;
+}
+.filter-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.filter {
+  background-color: #111;
+  padding: 0.6rem;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.filter:hover {
+  background-color: #333;
+  box-shadow: 0 0 2px #fff;
+}
+.filter-type {
+  background-color: #193718;
+}
+.filter-type select {
+  background-color: #e67efe;
+  font-size: 1.2rem;
+  color: #000;
+  font-family: inherit;
+}
+.filter-type select option {
+  background-color: #4cf3bb;
+  color: #000;
+}
