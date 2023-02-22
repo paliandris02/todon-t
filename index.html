@@ -12,7 +12,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
-    <script src="./js/controller.js"></script>
+    <script type="module" src="./js/controller.js"></script>
   </head>
   <body>
     <section class="section-main">
@@ -36,51 +36,58 @@
           <div class="task-list">
             <div class="task">
               <div class="task-title">Weekly review</div>
-              <div class="task-time-created">9:00 am</div>
-              <div class="task-description">Wanda Square E6</div>
-            </div>
-            <div class="task">
-              <div class="task-title">Weekly review</div>
-              <div class="task-time-created">9:00 am</div>
-              <div class="task-description">Wanda Square E6</div>
-            </div>
-            <div class="task">
-              <div class="task-title">Weekly review</div>
-              <div class="task-time-created">9:00 am</div>
-              <div class="task-description">Wanda Square E6</div>
-            </div>
-            <div class="task">
-              <div class="task-title">Weekly review</div>
-              <div class="task-time-created">9:00 am</div>
-              <div class="task-description">Wanda Square E6</div>
-            </div>
-            <div class="task">
-              <div class="task-title">Weekly review</div>
-              <div class="task-time-created">9:00 am</div>
-              <div class="task-description">
-                Wanda Sqsadjkasjodhhdasdasdasdasdasd sadasd sdasd d sdasd
-                isuuare E6
+              <div class="btn-del">
+                <ion-icon
+                  class="del-icon"
+                  name="close-circle-outline"
+                ></ion-icon>
               </div>
-            </div>
-            <div class="task">
-              <div class="task-title">Weekly review</div>
               <div class="task-time-created">9:00 am</div>
               <div class="task-description">Wanda Square E6</div>
             </div>
             <div class="task">
               <div class="task-title">Weekly review</div>
+              <div class="btn-del">
+                <ion-icon
+                  class="del-icon"
+                  name="close-circle-outline"
+                ></ion-icon>
+              </div>
               <div class="task-time-created">9:00 am</div>
               <div class="task-description">Wanda Square E6</div>
             </div>
             <div class="task">
               <div class="task-title">Weekly review</div>
+              <div class="btn-del">
+                <ion-icon
+                  class="del-icon"
+                  name="close-circle-outline"
+                ></ion-icon>
+              </div>
               <div class="task-time-created">9:00 am</div>
               <div class="task-description">Wanda Square E6</div>
             </div>
             <div class="task">
               <div class="task-title">Weekly review</div>
+              <div class="btn-del">
+                <ion-icon
+                  class="del-icon"
+                  name="close-circle-outline"
+                ></ion-icon>
+              </div>
               <div class="task-time-created">9:00 am</div>
               <div class="task-description">Wanda Square E6</div>
+            </div>
+            <div class="task">
+              <div class="task-title">Weekly review</div>
+              <div class="btn-del">
+                <ion-icon
+                  class="del-icon"
+                  name="close-circle-outline"
+                ></ion-icon>
+              </div>
+              <div class="task-time-created">9:00 am</div>
+              <div class="task-description"></div>
             </div>
           </div>
           <div class="add-task">
@@ -93,17 +100,27 @@
           <input
             type="text"
             class="create-task-title"
-            placeholder="Write a short name"
+            placeholder="Write here,"
           />
-
           <input
             type="text"
             class="create-task-description"
-            placeholder="Write description"
+            placeholder="Add more info."
           />
           <input type="datetime-local" class="task-datetime" />
+          <div class="add-task">
+            <div class="add-task-text">Add</div>
+          </div>
         </div>
       </div>
     </section>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
   </body>
 </html>
