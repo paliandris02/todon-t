@@ -13,9 +13,8 @@ const createTaskObject = function (data) {
 };
 
 export const loadTask = function (data) {
-  const task = createTaskObject(data);
-
   try {
+    const task = createTaskObject(data);
     state.tasks.unshift(task);
   } catch (error) {
     console.log(error);

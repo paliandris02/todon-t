@@ -2,7 +2,7 @@ class TaskView {
   _data;
   _parentEl = document.querySelector(".task-list");
   _btnAdd = document.querySelector(".add-task");
-
+  _errorMessage = `<div class"error-message">Something went wrong</div>`;
   addHandlerRender(handler) {
     this._btnAdd.addEventListener("click", handler);
   }
@@ -15,10 +15,7 @@ class TaskView {
     this._data = data;
     const markup = this._generateMarkup();
     this._clearParentEl();
-    if (!this._parentEl) {
-      console.log(this._parentEl);
-      console.log("parentel error");
-    }
+
     this._parentEl.insertAdjacentHTML("afterbegin", markup);
   }
   _generateMarkup() {
@@ -32,7 +29,7 @@ class TaskView {
     this._parentEl.innerHTML = "";
   }
   _generateMarkupTask(task) {
-    return `    <div class="task">
+    return `    <div data-id=${task.id} class="task">
     <div class="task-title">${task.shortName}</div>
     <div class="btn-del">
       <ion-icon
@@ -55,6 +52,9 @@ class TaskView {
     document.querySelector(".create-task-title").value = "";
     document.querySelector(".create-task-description").value = "";
     document.querySelector(".task-datetime").value = "";
+  }
+  renderError() {
+    this._parentEl.innerHTML = this._errorMessage;
   }
 }
 export default new TaskView();
