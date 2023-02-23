@@ -1,14 +1,5 @@
 export const state = {
-  tasks: [
-    {
-      id: 1,
-      //todo:unique id
-      shortName: "Interview K&H",
-      description: "Aaslfmkmaksdkks skamdk",
-      dateCreated: 921978498918,
-      isDone: false,
-    },
-  ],
+  tasks: [],
 };
 
 const createTaskObject = function (data) {
@@ -16,7 +7,7 @@ const createTaskObject = function (data) {
     id: crypto.randomUUID(),
     shortName: data.shortName,
     description: data.description,
-    dateCreated: data.dateCreated,
+    dueDate: data.dueDate,
     isDone: false,
   };
 };
