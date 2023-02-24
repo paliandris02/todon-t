@@ -9,17 +9,37 @@ const controllTasks = function () {
 
     taskView.clearInputs();
 
-    console.log(shortNameAndDescription);
     model.loadTask(shortNameAndDescription);
+
     console.log(model.state.tasks);
+
     taskView.render(model.state.tasks);
   } catch (error) {
     taskView.renderError();
     console.log(error);
   }
 };
+const controllDeleteTask = function (id) {
+  try {
+    model.deleteTask(id);
+    taskView.render(model.state.tasks);
+  } catch (error) {
+    throw error;
+  }
+};
+
+const controllDoneStateTask = function (id) {
+  try {
+    model.changeDoneStateTask(id);
+    taskView.render(model.state.tasks);
+  } catch (error) {
+    throw error;
+  }
+};
 
 const init = function () {
+  taskView.addHandlerDelete(controllDeleteTask);
   taskView.addHandlerRender(controllTasks);
+  taskView.addHandlerDoneState(controllDoneStateTask);
 };
 init();
