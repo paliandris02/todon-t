@@ -1,10 +1,13 @@
 export const state = {
   tasks: [],
+  search: {
+    searchedTasks: [],
+  },
 };
 
 const createTaskObject = function (data) {
   if (!data.shortName || !data.description) {
-    throw new Error("Data is empty");
+    throw new Error("Inputs are empty");
   }
   return {
     id: crypto.randomUUID(),
@@ -43,4 +46,13 @@ export const changeDoneStateTask = function (id) {
     return;
   }
   task.isDone = false;
+};
+
+export const addToLocalStrorage = function () {
+  if (!state.tasks) return;
+  localStorage.setItem("tasks", JSON.stringify(state.tasks));
+};
+
+export const getFromLocalStorage = function () {
+  state.tasks = JSON.parse(localStorage.getItem("tasks"));
 };

@@ -5,7 +5,7 @@ class TaskView {
   _inputShortName = document.querySelector(".create-task-title");
   _inputDescription = document.querySelector(".create-task-description");
   _inputDateTime = document.querySelector(".task-datetime");
-
+  _btnSaveTasks = document.querySelector(".save-icon");
   //
   addHandlerRender(handler) {
     this._btnAdd.addEventListener("click", handler);
@@ -38,7 +38,11 @@ class TaskView {
       handler(id);
     });
   }
-
+  addHandlerSaveTasks(handler) {
+    this._btnSaveTasks.addEventListener("click", function () {
+      handler();
+    });
+  }
   render(data) {
     if (!data) {
       console.log("Error in view render");

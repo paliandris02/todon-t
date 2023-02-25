@@ -71,6 +71,10 @@ body {
   min-height: 44.8rem;
   min-width: 38.5rem;
 }
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
 .title {
   font-size: 2.4rem;
   margin-bottom: 0.6rem;
@@ -86,6 +90,20 @@ body {
   display: inline-block;
   font-weight: 700;
   font-size: 2rem;
+}
+.save-tasks {
+  justify-self: end;
+  align-self: center;
+}
+.save-icon {
+  font-size: 3.2rem;
+  color: #fff;
+  transition: all 0.3s;
+}
+.save-icon:hover {
+  cursor: pointer;
+  fill: #ff8bff;
+  transform: scale(1.1);
 }
 .dot-animated:after {
   content: ".";

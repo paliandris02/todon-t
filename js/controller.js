@@ -36,10 +36,19 @@ const controllDoneStateTask = function (id) {
     throw error;
   }
 };
-
+const controllSaveTasks = function () {
+  if (!model.state.tasks) return;
+  model.addToLocalStrorage();
+};
+const controllLoadFromLocalStorage = function () {
+  model.getFromLocalStorage();
+  taskView.render(model.state.tasks);
+};
 const init = function () {
-  taskView.addHandlerDelete(controllDeleteTask);
+  controllLoadFromLocalStorage();
   taskView.addHandlerRender(controllTasks);
+  taskView.addHandlerDelete(controllDeleteTask);
   taskView.addHandlerDoneState(controllDoneStateTask);
+  taskView.addHandlerSaveTasks(controllSaveTasks);
 };
 init();
