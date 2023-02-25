@@ -6,6 +6,7 @@ class TaskView {
   _inputDescription = document.querySelector(".create-task-description");
   _inputDateTime = document.querySelector(".task-datetime");
   _btnSaveTasks = document.querySelector(".save-icon");
+  _inputSeach = document.querySelector(".search");
   //
   addHandlerRender(handler) {
     this._btnAdd.addEventListener("click", handler);
@@ -39,13 +40,23 @@ class TaskView {
     });
   }
   addHandlerSaveTasks(handler) {
-    this._btnSaveTasks.addEventListener("click", function () {
+    this._btnSaveTasks.addEventListener("click", function (e) {
       handler();
+      e.target.attributes.name.value = "checkmark-done";
+      e.target.style.color = "#4cf3bb";
+      setTimeout(() => {
+        e.target.attributes.name.value = "save";
+        e.target.style.color = "#fff";
+      }, 1500);
     });
   }
+  addHandlerSearch(handler) {
+    this._inputSeach.addEventListener("keyup", handler);
+  }
+  //
   render(data) {
     if (!data) {
-      console.log("Error in view render");
+      throw new Error("Error in render");
       return;
     }
     this._data = data;
@@ -53,6 +64,9 @@ class TaskView {
     this._clearParentEl();
 
     this._parentEl.insertAdjacentHTML("afterbegin", markup);
+  }
+  renderSearchError(errormsg) {
+    this._parentEl.innerHTML = errormsg.message;
   }
   //
   _generateMarkup() {
@@ -114,6 +128,9 @@ class TaskView {
     setTimeout(() => {
       el.classList.remove("bad-input");
     }, 5000);
+  }
+  getSearchQuery() {
+    return this._inputSeach.value;
   }
 }
 export default new TaskView();

@@ -42,7 +42,21 @@ const controllSaveTasks = function () {
 };
 const controllLoadFromLocalStorage = function () {
   model.getFromLocalStorage();
+  if (!model.state.tasks) return;
   taskView.render(model.state.tasks);
+};
+const controllSearch = function () {
+  try {
+    const query = taskView.getSearchQuery();
+    model.loadSearchResult(query);
+    console.log(model.state.search.searchedTasks.length === 0);
+    if (model.state.search.searchedTasks.length === 0) {
+      throw new Error("No result");
+    }
+    taskView.render(model.state.search.searchedTasks);
+  } catch (error) {
+    taskView.renderSearchError(error);
+  }
 };
 const init = function () {
   controllLoadFromLocalStorage();
@@ -50,5 +64,6 @@ const init = function () {
   taskView.addHandlerDelete(controllDeleteTask);
   taskView.addHandlerDoneState(controllDoneStateTask);
   taskView.addHandlerSaveTasks(controllSaveTasks);
+  taskView.addHandlerSearch(controllSearch);
 };
 init();

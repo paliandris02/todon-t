@@ -56,3 +56,9 @@ export const addToLocalStrorage = function () {
 export const getFromLocalStorage = function () {
   state.tasks = JSON.parse(localStorage.getItem("tasks"));
 };
+
+export const loadSearchResult = function (query) {
+  state.search.searchedTasks = state.tasks.filter((task) => {
+    return task.shortName.toLowerCase().includes(query.toLowerCase());
+  });
+};
