@@ -1,5 +1,7 @@
 export const state = {
-  tasks: [],
+  root: {
+    tasks: [],
+  },
   search: {
     searchedTasks: [],
   },
@@ -21,7 +23,8 @@ const createTaskObject = function (data) {
 export const loadTask = function (data) {
   try {
     const task = createTaskObject(data);
-    state.tasks.unshift(task);
+    state.root.tasks.unshift(task);
+    //UNSHIFT -> PUSH? GITHUB PAGES BUG
   } catch (error) {
     console.log(error);
     throw error;
@@ -29,18 +32,16 @@ export const loadTask = function (data) {
 };
 
 export const deleteTask = function (id) {
-  const indexOfTask = state.tasks.findIndex((task) => task.id === id);
+  const indexOfTask = state.root.tasks.findIndex((task) => task.id === id);
   console.log("delete happened");
-  state.tasks.splice(indexOfTask, 1);
+  state.root.tasks.splice(indexOfTask, 1);
 };
 
 export const changeDoneStateTask = function (id) {
-  const task = state.tasks.find((task, i, arr) => {
-    console.log(arr, id);
+  const task = state.root.tasks.find((task, i, arr) => {
     return task.id === id;
   });
 
-  console.log(task);
   if (!task.isDone) {
     task.isDone = true;
     return;
@@ -49,16 +50,22 @@ export const changeDoneStateTask = function (id) {
 };
 
 export const addToLocalStrorage = function () {
-  if (!state.tasks) return;
-  localStorage.setItem("tasks", JSON.stringify(state.tasks));
+  // if (state.root.tasks.length === 0) return;
+  localStorage.setItem("tasks", JSON.stringify(state.root.tasks));
 };
 
 export const getFromLocalStorage = function () {
-  state.tasks = JSON.parse(localStorage.getItem("tasks"));
+  try {
+    const tasksFromLocalStorage = JSON.parse(localStorage.getItem("tasks"));
+    if (!tasksFromLocalStorage) return;
+    state.root.tasks = JSON.parse(localStorage.getItem("tasks"));
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const loadSearchResult = function (query) {
-  state.search.searchedTasks = state.tasks.filter((task) => {
+  state.search.searchedTasks = state.root.tasks.filter((task) => {
     return task.shortName.toLowerCase().includes(query.toLowerCase());
   });
 };

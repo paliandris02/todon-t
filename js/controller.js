@@ -11,9 +11,7 @@ const controllTasks = function () {
 
     model.loadTask(shortNameAndDescription);
 
-    console.log(model.state.tasks);
-
-    taskView.render(model.state.tasks);
+    taskView.render(model.state.root.tasks);
   } catch (error) {
     taskView.renderError();
     console.log(error);
@@ -22,7 +20,7 @@ const controllTasks = function () {
 const controllDeleteTask = function (id) {
   try {
     model.deleteTask(id);
-    taskView.render(model.state.tasks);
+    taskView.render(model.state.root.tasks);
   } catch (error) {
     throw error;
   }
@@ -31,19 +29,23 @@ const controllDeleteTask = function (id) {
 const controllDoneStateTask = function (id) {
   try {
     model.changeDoneStateTask(id);
-    taskView.render(model.state.tasks);
+    if (taskView.getSearchQuery() !== "") {
+      taskView.render(model.state.search.searchedTasks);
+      return;
+    }
+    taskView.render(model.state.root.tasks);
   } catch (error) {
     throw error;
   }
 };
 const controllSaveTasks = function () {
-  if (!model.state.tasks) return;
+  if (!model.state.root.tasks) return;
   model.addToLocalStrorage();
 };
 const controllLoadFromLocalStorage = function () {
   model.getFromLocalStorage();
-  if (!model.state.tasks) return;
-  taskView.render(model.state.tasks);
+  if (!model.state.root.tasks) return;
+  taskView.render(model.state.root.tasks);
 };
 const controllSearch = function () {
   try {
