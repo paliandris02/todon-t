@@ -3,7 +3,11 @@ export const state = {
     tasks: [],
   },
   search: {
-    searchedTasks: [],
+    filters: {
+      query: "",
+      isDone: null,
+    },
+    filteredTasks: [],
   },
 };
 
@@ -24,7 +28,6 @@ export const loadTask = function (data) {
   try {
     const task = createTaskObject(data);
     state.root.tasks.unshift(task);
-    //UNSHIFT -> PUSH? GITHUB PAGES BUG
   } catch (error) {
     console.log(error);
     throw error;
@@ -64,8 +67,17 @@ export const getFromLocalStorage = function () {
   }
 };
 
-export const loadSearchResult = function (query) {
-  state.search.searchedTasks = state.root.tasks.filter((task) => {
-    return task.shortName.toLowerCase().includes(query.toLowerCase());
-  });
+export const loadSearchResult = function () {
+  state.search.searchedTasks = state.root.tasks
+    .filter((task) => {
+      if (state.search.filters.query === "") {
+        return state.root.tasks;
+      }
+      return task.shortName
+        .toLowerCase()
+        .includes(state.search.filters.query.toLowerCase());
+    })
+    .filter((task) => {
+      return task.isDone === state.search.filters.isDone;
+    });
 };

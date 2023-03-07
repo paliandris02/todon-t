@@ -7,6 +7,7 @@ class TaskView {
   _inputDateTime = document.querySelector(".task-datetime");
   _btnSaveTasks = document.querySelector(".save-icon");
   _inputSeach = document.querySelector(".search");
+  _btnFilter = document.querySelectorAll(".filter");
   //
   addHandlerRender(handler) {
     this._btnAdd.addEventListener("click", handler);
@@ -52,6 +53,17 @@ class TaskView {
   }
   addHandlerSearch(handler) {
     this._inputSeach.addEventListener("keyup", handler);
+  }
+  //
+  addHandlerDoneFilter(handler) {
+    let btnClicked;
+    for (const btn of this._btnFilter) {
+      btn.addEventListener("click", function (e) {
+        btnClicked = e.target;
+        handler(e.target);
+        // bug: kétszer hívja meg a handlert ezért a state-t azonnal visszaállitja
+      });
+    }
   }
   //
   render(data) {
