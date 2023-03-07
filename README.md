@@ -13,11 +13,12 @@ Manage things you do not want to do
 - Add/Remove tasks
 - Mark task done/undone
 - Save them to local storage
+- Searching
 
 ---
 
 ## Upcoming
 
-- Searching
+
 - Filter by done/undone state
 - ...
